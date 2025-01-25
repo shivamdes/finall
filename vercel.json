@@ -4,11 +4,15 @@
     {
       "src": "api/index.py",
       "use": "@vercel/python",
-      "config": { 
+      "config": {
         "maxLambdaSize": "15mb",
         "runtime": "python3.11",
-        "includeFiles": ["templates/**", "static/**"],
-        "installCommand": "pip install --upgrade pip && pip install -r requirements.txt"
+        "includeFiles": [
+          "templates/**",
+          "static/**"
+        ],
+        "installCommand": "pip install --upgrade pip && pip install -r requirements.txt",
+        "docker": true
       }
     }
   ],
