@@ -6,8 +6,9 @@
       "use": "@vercel/python",
       "config": { 
         "maxLambdaSize": "15mb",
-        "runtime": "python3.10",
-        "includeFiles": ["templates/**", "static/**"]
+        "runtime": "python3.11",
+        "includeFiles": ["templates/**", "static/**"],
+        "installCommand": "pip install --upgrade pip && pip install -r requirements.txt"
       }
     }
   ],
