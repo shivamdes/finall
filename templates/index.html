@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YouTube Transcript Formatter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>YouTube Transcript Formatter</h1>
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+        <form method="POST">
+            <input type="text" name="url" placeholder="YouTube Video URL" required>
+            <button type="submit">Format Transcript</button>
+        </form>
+        <div class="help-text">
+            <p>Note: Video must have captions enabled. Try these examples:</p>
+            <ul>
+                <li>https://youtu.be/dQw4w9WgXcQ</li>
+                <li>https://youtu.be/JGwWNGJdvx8</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

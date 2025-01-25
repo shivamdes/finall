@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formatted Transcript</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="top-actions">
+            <a href="/" class="back-link">← New Conversion</a>
+            <button onclick="copyToClipboard()" class="copy-btn">Copy Text</button>
+        </div>
+        <h1>Formatted Transcript</h1>
+        <div class="transcript-box">
+            <div class="transcript-content" id="transcriptContent">
+                {{ transcript|trim|replace('\n\n', '<br><br>')|safe }}
+            </div>
+        </div>
+        <div class="actions">
+            <button onclick="downloadTranscript()">Download TXT</button>
+        </div>
+        <div id="copyStatus" class="copy-status"></div>
+    </div>
+    <script>
+        function downloadTranscript() {
+            const text = document.querySelector('.transcript-content').innerText;
+            const blob = new Blob([text], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `transcript_{{ video_id }}.txt`;
+            a.click();
+        }
+
+        function copyToClipboard() {
+            const text = document.querySelector('.transcript-content').innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                showCopyStatus('Copied to clipboard!', 'success');
+            }).catch(err => {
+                showCopyStatus('Failed to copy!', 'error');
+            });
+        }
+
+        function showCopyStatus(message, type) {
+            const status = document.getElementById('copyStatus');
+            status.textContent = message;
+            status.className = `copy-status ${type}`;
+            setTimeout(() => {
+                status.textContent = '';
+                status.className = 'copy-status';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
