@@ -7,23 +7,14 @@
       "config": {
         "maxLambdaSize": "15mb",
         "runtime": "python3.11",
-        "includeFiles": [
-          "templates/**",
-          "static/**"
-        ],
+        "includeFiles": ["templates/**", "static/**"],
         "installCommand": "pip install --upgrade pip && pip install -r requirements.txt",
         "docker": true
       }
     }
   ],
   "routes": [
-    {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/api/index.py"
-    }
+    { "src": "/static/(.*)", "dest": "/static/$1" },
+    { "src": "/(.*)", "dest": "/api/index.py" }
   ]
 }
